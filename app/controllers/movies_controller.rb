@@ -7,7 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    if params[:director].present?
+      @movies = Movie.where(director: params[:director])
+    else
+      @movies = Movie.all
+    end
   end
 
   def new
@@ -36,6 +40,15 @@ class MoviesController < ApplicationController
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."
     redirect_to movies_path
+  end
+
+  def by_director
+    if params[:director].present?
+      @movies = Movie.where(director: params[:director])
+    else
+      @movies = Movie.all  # Fallback to show all movies if no director is specified
+    end
+    render :index  # Assuming you want to render the index view with the results
   end
 
   private

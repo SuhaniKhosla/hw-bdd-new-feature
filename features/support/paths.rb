@@ -7,11 +7,12 @@ def path_to(page_name)
   when /^the edit page for "(.*)"$/
     edit_movie_path(Movie.find_by(title: $1))
 
-  when /^the Similar Movies page for "(.*)"$/
-    show_by_director_movie_path(Movie.find_by(title: $1))
-
   when /^the details page for "(.*)"$/
     movie_path(Movie.find_by(title: $1))
+
+  when /^the Similar Movies page for "(.*)"/
+    director = $1
+    movies_by_director_path(director: director) 
 
   # Add additional mappings as needed
 
