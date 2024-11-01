@@ -33,8 +33,9 @@ Scenario: can't find similar movies if we don't know director (sad path)
   Then  I should be on the home page
   And   I should see "'Alien' has no director info"
 
-Scenario: Fail to create a new movie
+Scenario: Create a new movie
+  
  
 
-Scenario: Fail to delete a movie
+Scenario: Destroy a movie
  
