@@ -11,8 +11,8 @@ def path_to(page_name)
     movie_path(Movie.find_by(title: $1))
 
   when /^the Similar Movies page for "(.*)"/
-    director = $1
-    by_director_path(director: director) 
+    movie = Movie.find_by(title: $1)
+    similar_movies_path(movie) 
 
   # Add additional mappings as needed
 

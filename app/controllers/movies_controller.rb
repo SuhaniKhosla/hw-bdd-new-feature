@@ -20,6 +20,9 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+
+  
+
   def edit
     @movie = Movie.find params[:id]
   end
@@ -38,20 +41,13 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  def by_director
-    if params[:director].present?
-      @movies = Movie.where(director: params[:director])
-    else
-      @movies = Movie.all  # Fallback to show all movies if no director is specified
-    end
-    render :index  # Assuming you want to render the index view with the results
-  end
+  
 
   
   def similar
     @movie = Movie.find(params[:id])
     if @movie.director.present?
-      # Find movies with the same director, excluding the current movie
+      
       @similar_movies = Movie.where(director: @movie.director).where.not(id: @movie.id)
     else
       flash[:warning] = "'#{@movie.title}' has no director info"
