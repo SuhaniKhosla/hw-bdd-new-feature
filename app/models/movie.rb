@@ -5,5 +5,6 @@ class Movie < ActiveRecord::Base
   # (the current movie) from your return value
   def others_by_same_director
     # Your code here #
+    Movie.where(director: self.director).where.not(id: self.id)
   end
 end

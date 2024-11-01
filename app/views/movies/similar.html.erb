@@ -1,0 +1,26 @@
+<!-- app/views/movies/similar.html.erb -->
+
+<h2>Movies with the same director: <%= @movie.director %></h2>
+
+<% if @similar_movies.present? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Release Date</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @similar_movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td><%= movie.release_date %></td>
+          <td><%= movie.rating %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No similar movies found.</p>
+<% end %>
